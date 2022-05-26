@@ -10,36 +10,14 @@
 * `2021-11-07` Thanks to [ak92501](https://twitter.com/ak92501), a [web demo](https://huggingface.co/spaces/akhaliq/AnimeGANv2) is integrated to [Huggingface Spaces](https://huggingface.co/spaces) with [Gradio](https://github.com/gradio-app/gradio). [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/akhaliq/AnimeGANv2)
 
 * `2021-11-07` Thanks to [xhlulu](https://github.com/xhlulu), the `torch.hub` model is now available. See [Torch Hub Usage](#torch-hub-usage).
-
-* `2021-11-07` Add FacePortraitV2 style demo to a telegram bot. See [@face2stickerbot](https://t.me/face2stickerbot) by [sxela](https://github.com/sxela)
  
  
 ## Basic Usage
-
-**Weight Conversion from the Original Repo (Requires TensorFlow 1.x)**
-```
-git clone https://github.com/TachibanaYoshino/AnimeGANv2
-python convert_weights.py
-```
 
 **Inference**
 ```
 python test.py --input_dir [image_folder_path] --device [cpu/cuda]
 ```
-
-<details>
-<summary>samples</summary>
-
-<br>
-Results from converted `Paprika` style model (input image, original tensorflow result, pytorch result from left to right)
-
-<img src="./samples/compare/1.jpg" width="960"> &nbsp; 
-<img src="./samples/compare/2.jpg" width="960"> &nbsp; 
-<img src="./samples/compare/3.jpg" width="960"> &nbsp; 
-   
-</details>
- 
-**Note:** Training code not included / Results from converted weights slightly different due to the [bilinear upsample issue](https://github.com/pytorch/pytorch/issues/10604)
 
 
 ## Torch Hub Usage
@@ -72,6 +50,30 @@ out = face2paint(model, img)
 More details about `torch.hub` is in [the torch docs](https://pytorch.org/docs/stable/hub.html)
 
 
+## Weight Conversion from the Original Repo (Tensorflow)
+1. Install the [original repo's dependencies](https://github.com/TachibanaYoshino/AnimeGANv2#requirements): python 3.6, tensorflow 1.15.0-gpu
+2. Install torch >= 1.7.1
+3. Clone the original repo & run
+```
+git clone https://github.com/TachibanaYoshino/AnimeGANv2
+python convert_weights.py
+```
+
+<details>
+<summary>samples</summary>
+
+<br>
+Results from converted `Paprika` style model (input image, original tensorflow result, pytorch result from left to right)
+
+<img src="./samples/compare/1.jpg" width="960"> &nbsp; 
+<img src="./samples/compare/2.jpg" width="960"> &nbsp; 
+<img src="./samples/compare/3.jpg" width="960"> &nbsp; 
+   
+</details>
+ 
+**Note:** Results from converted weights slightly different due to the [bilinear upsample issue](https://github.com/pytorch/pytorch/issues/10604)
+
+
 ## Additional Model Weights
 
 **Webtoon Face** [[ckpt]](https://drive.google.com/file/d/10T6F3-_RFOCJn6lMb-6mRmcISuYWJXGc)
@@ -81,7 +83,7 @@ More details about `torch.hub` is in [the torch docs](https://pytorch.org/docs/s
 
 Trained on <b>256x256</b> face images. Distilled from [webtoon face model](https://github.com/bryandlee/naver-webtoon-faces/blob/master/README.md#face2webtoon) with L2 + VGG + GAN Loss and CelebA-HQ images.
 
-<img src="./samples/face_results.jpg" width="512"> &nbsp; 
+![face_results](https://user-images.githubusercontent.com/26464535/143959011-1740d4d3-790b-4c4c-b875-24404ef9c614.jpg) &nbsp; 
   
 </details>
 
